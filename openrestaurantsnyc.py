@@ -149,5 +149,5 @@ m = add_categorical_legend(m, 'Legend',
                            labels = ['Roadway Only', 'Sidewalk Only', 'Both'])
 
 
-m.save(r"C:\Users\Tahsin Provath\Desktop\Hunter - Fall 2021\CS 39542\OpenRestaurantsNYC\map.html")
+m.save(r"C:\Users\Tahsin Provath\Desktop\Hunter - Fall 2021\CS 39542\OpenRestaurantsNYC\index.html")
 print ("Done")
