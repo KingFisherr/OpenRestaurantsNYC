@@ -6,6 +6,8 @@
 
 Outdoor Dining NYC brings together all the data from the cities outdoor restaurant program to display to users a concise map with all available outdoor dining options. This project allows users find and see options in their zipcode, compare zipcodes, and even filter by type of outdoor dining.
 
+![](https://i.imgur.com/00pUWv0.png)
+
 
 Data Sources:
 https://data.cityofnewyork.us/Transportation/Open-Restaurant-Applications/pitm-atqc
