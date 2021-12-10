@@ -1,35 +1,46 @@
 <p style="text-align: center;">&nbsp;</p>
 <div class="mainText">
 <div style="text-align: center;"><span style="color: #000000;"><strong>NYC Open Restaurants</strong></span><br /><hr />
+<h4><span style="text-decoration: underline;"><img style="border-width: 100px; margin: 5px;" src="https://i.imgur.com/44UuPew.jpg" width="685" height="472" /></span></h4>
 <h4><span style="text-decoration: underline;">Overview <br /></span></h4>
 The focus of my project was the NYC Outdoor Dining program. More specifically, to use several data points from this program and aggregate all dining options around NYC in a simple and efficient way. The OpenRestauarantsNYC project uses open source data from the Outdoor Dining program in addition with pandas, folium, and matplotlib to provide users with meaningful numerical and visual info about restaurants across the city, or in any specified zip code.<br />
 <h4><span style="text-decoration: underline;">Background and Why?</span></h4>
-The Outdoor Dining program was started in NYC to combat COVID spread, it has since become a favorite of many New Yorkers, and a permanent city program.</div>
+The Outdoor Dining program was started in NYC to combat COVID spread, it has since become a favorite for many New Yorkers, and a permanent city program.</div>
+<div style="text-align: center;"><span style="font-weight: 400;">In fact, recent studies show that many diners also favor dining outdoors rather than indoors. In the Citywide Mobility Survey by the NYC DOT, an overwhelmingly broad percentage of those surveyed in Manhattan (&gt; 80%) support repurposing curb space from free private vehicle parking to make room for the outdoor dining sheds and structures. </span></div>
 <div style="text-align: center;">&nbsp;</div>
-<div style="text-align: center;">(also show that it is popular etc.)</div>
-<div style="text-align: center;">&nbsp;</div>
-<div style="text-align: center;">Here are some stats...</div>
-<div style="text-align: center;">&nbsp;</div>
+<div style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Table 1: </strong>Comfort Dining Outdoors v. Indoors</div>
 <div style="text-align: center;"><img src="https://kingfisherr.github.io/OpenRestaurantsNYC/morningconsult.png" alt="Indoor v. Outdoor" width="750" height="375" /></div>
+<div style="text-align: center;">Source: Meyers, Alyssa. "Tracking the Return to Normal: Dining" <em>Morning Consult</em>, 2020</div>
 <div style="text-align: center;">&nbsp;</div>
-<div style="text-align: center;">&nbsp;</div>
-<div style="text-align: center;"><span style="font-weight: 400;"> 84 percent of Manhattanites say they support repurposing</span><span style="font-weight: 400;"> curb space from free private vehicle storage to make room for the outdoor dining sheds and structures,</span>&nbsp;</div>
-<div style="text-align: center;">&nbsp;</div>
-<div style="text-align: center;">https://www1.nyc.gov/html/dot/downloads/pdf/2020_cms_covid_october_summary_report.pdf</div>
 <div style="text-align: center;">
-<h4><span style="text-decoration: underline;">Data Section<br /></span></h4>
-Explain what data i got and why and what it showed, explain graph</div>
+<h4><span style="text-decoration: underline;">Data<br /></span></h4>
+So now we know New Yorkers support and even prefer outdoor dining over indoors. Are there even many options? How many options do they have?</div>
+<div style="text-align: center;">In the chart below, we see that are many thousands of outdoor dining restaurants, mostly concentrated in Manhattan, Queens, and Brooklyn.</div>
+<div style="text-align: center;">&nbsp;</div>
+<div style="text-align: left;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Table 2: Outdoor Seating by Borough</strong></div>
 <div style="text-align: center;">&nbsp;</div>
 <div style="text-align: center;"><img src="https://kingfisherr.github.io/OpenRestaurantsNYC/borodata.png" width="684" height="570" /></div>
-<br />
-<div style="text-align: center;">explain what program does...</div>
 <div style="text-align: center;">&nbsp;</div>
-<div class="iframeWrapper" style="text-align: center;"><iframe src="https://kingfisherr.github.io/OpenRestaurantsNYC/fmap.html" width="85%" height="85%" frameborder="0"></iframe></div>
-<div style="text-align: center;">&nbsp;</div>
-<div style="text-align: center;">explain how u can specify</div>
-<div style="text-align: center;">&nbsp;</div>
+<div style="text-align: center;">
+<h4><span style="text-decoration: underline;">Data: A Deeper Look</span></h4>
 </div>
-<p style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <iframe src="https://kingfisherr.github.io/OpenRestaurantsNYC/map.html" name="first" width="600" height="300"></iframe> <iframe src="https://kingfisherr.github.io/OpenRestaurantsNYC/map.html" name="second" width="600" height="300"></iframe></p>
+<div style="text-align: center;">My program OpenRestaurantsNYC written in python takes data from the NYC Outdoor Dining program and puts provides these options in a visual friendly map, complete with filtering, and relevant information for the user. Here we ask the program to show us all the open dining restaurants available around NYC.</div>
+<div style="text-align: center;">&nbsp;</div>
+<div class="iframeWrapper" style="text-align: center;"><iframe src="https://kingfisherr.github.io/OpenRestaurantsNYC/fmap.html" width="100%" height="100%" frameborder="0"></iframe></div>
+<div class="iframeWrapper" style="text-align: center;">&nbsp;</div>
+<div style="text-align: center;">&nbsp;</div>
+<div style="text-align: center;"><strong>While a map of all outdoor restaurants is useful, we can also filter to a more specific or relevant area</strong></div>
+<div style="text-align: center;">&nbsp;</div>
+<div style="text-align: center;">&nbsp;</div>
+<div style="text-align: left;"><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Users can search by zip code, here the user searches by "10065"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Users can also search by location, here the user searches by "Soho"</em></div>
+</div>
+<p style="text-align: center;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <iframe src="https://kingfisherr.github.io/OpenRestaurantsNYC/map.html" name="first" width="600" height="300"></iframe> <iframe src="https://kingfisherr.github.io/OpenRestaurantsNYC/smap.html" name="second" width="600" height="300"></iframe></p>
+<p style="text-align: center;">&nbsp;</p>
+<p style="text-align: center;">Ultimately, this program efficiently provides useful numerical and visual information to aid users in their search for open dining restaurants around NYC.</p>
 <p>&nbsp;</p>
 <h4 style="text-align: center;"><span style="text-decoration: underline;">Citations</span></h4>
+<p style="text-align: center;"><span style="text-decoration: underline;">https://morningconsult.com/return-to-dining/</span></p>
+<p style="text-align: center;"><span style="text-decoration: underline;">https://www1.nyc.gov/html/dot/downloads/pdf/2020_cms_covid_october_summary_report.pdf</span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
