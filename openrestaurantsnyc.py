@@ -6,6 +6,7 @@ import pandas as pd
 import numpy as np 
 import folium 
 import matplotlib.pyplot as plt
+import re
 import branca
 
 # Adds legend for each outdoor dining options to assist in visuals on folium
@@ -110,7 +111,9 @@ def add_categorical_legend(folium_map, title, colors, labels):
     return folium_map
 
 # Adds relevant information to restaurant markers (i.e. name, address)
-def addallmarkers(df, map):
+def addallmarkers(df, map, zipc):
+    if (zipc > 0):
+      map = folium.Map(location=[ df['Latitude'].iloc[0], df['Longitude'].iloc[0]], zoom_start=15)
     tooltip = "Click Here For More Info"
     for a,b,c,d, e in zip(df.Latitude, df.Longitude, df['Restaurant Name'], df['Seating Interest (Sidewalk/Roadway/Both)'], df['Business Address']): 
         if a > 0:
@@ -128,7 +131,29 @@ def addallmarkers(df, map):
                 html = "<h5><b>" + c + "</h5></b>" + '<p style="font-family:Courier; color:Black; font-size: 12px;">' + e + "</p>"
                 iframe = folium.IFrame(html,width=125,height=100)              
                 marker = folium.Marker(location=[a, b], popup= folium.Popup(iframe, min_width= 125), tooltip = tooltip, icon = folium.Icon(color = 'green', icon= 'cutlery', prefix= 'fa'))
-                marker.add_to(map)                
+                marker.add_to(map)       
+    return map         
+
+def getzip(df):
+  # Takes user input to determine which type of map to generate (see below)
+  zipc = int(input("Enter a Zipcode: "))
+  # If zipcode is specified
+  if (zipc > 0):
+    checkdf = df[df['Postcode'] == zipc]
+    return checkdf
+  # If user wants to see all, drop all NaN rows and plot all markers
+  elif (zipc == 0):
+    checkdf = df.dropna()
+    return checkdf
+
+def getname(df):
+  name = input("Enter location name: ")
+  df = df.dropna()
+  checkdf = df[df['NTA'].str.contains(name)]
+  print (checkdf)
+  return checkdf
+
+
 
 # Read in data 
 df = pd.read_csv(r"C:\Users\Tahsin Provath\Desktop\Hunter - Fall 2021\CS 39542\Project files\Open_Restaurant_Applications.csv")
@@ -165,26 +190,32 @@ plt.savefig("borodata.png", bbox_inches='tight')
 # Center Map around Manhattan 
 m = folium.Map(location=[40.724971, -74.004477], zoom_start=12)
 
-# Takes user input to determine which type of map to generate (see below)
-zipc = int(input("Enter a Zipcode: "))
+#Search by zipcode or name
+choice = input ("Search by zip or name: ")
 
-# If zipcode is specified
-if (zipc > 0):
-  checkdf = df[df['Postcode'] == zipc]
-# If user wants to see all, drop all NaN rows and plot all markers
-elif (zipc == 0):
+if (choice == 'zip'):
+  checkdf = getzip(df)
+  zipc = 1
+elif (choice == 'name'):
+  checkdf = getname(df)
+  zipc = 2
+elif (choice == 'all'):
+  zipc = 0
   checkdf = df.dropna()
 
 # Add markers based on user request
-addallmarkers(checkdf, m)
+m = addallmarkers(checkdf, m, zipc)
 
 # Add legend
 m = add_categorical_legend(m, 'Outdoor Seating',
                              colors = ['green','blue', 'red'],
                            labels = ['Roadway Only', 'Sidewalk Only', 'Both'])
-if (zipc > 0):
+if (zipc == 1):
   m.save(r"C:\Users\Tahsin Provath\Desktop\Hunter - Fall 2021\CS 39542\OpenRestaurantsNYC\map.html")
   print ("Done")
-elif (zipc ==0):
+elif (zipc == 2):
+  m.save(r"C:\Users\Tahsin Provath\Desktop\Hunter - Fall 2021\CS 39542\OpenRestaurantsNYC\smap.html")
+  print ("Done")
+elif (zipc == 0):
   m.save(r"C:\Users\Tahsin Provath\Desktop\Hunter - Fall 2021\CS 39542\OpenRestaurantsNYC\fmap.html")
   print ("Done")
