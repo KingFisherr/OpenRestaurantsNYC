@@ -113,7 +113,7 @@ def add_categorical_legend(folium_map, title, colors, labels):
 # Adds relevant information to restaurant markers (i.e. name, address)
 def addallmarkers(df, map, zipc):
     if (zipc > 0):
-      map = folium.Map(location=[ df['Latitude'].iloc[0], df['Longitude'].iloc[0]], zoom_start=15)
+      map = folium.Map(location=[ df['Latitude'].iloc[0], df['Longitude'].iloc[0]], zoom_start=16)
     tooltip = "Click Here For More Info"
     for a,b,c,d, e in zip(df.Latitude, df.Longitude, df['Restaurant Name'], df['Seating Interest (Sidewalk/Roadway/Both)'], df['Business Address']): 
         if a > 0:
@@ -134,6 +134,7 @@ def addallmarkers(df, map, zipc):
                 marker.add_to(map)       
     return map         
 
+# Finds open dining options via zip code
 def getzip(df):
   # Takes user input to determine which type of map to generate (see below)
   zipc = int(input("Enter a Zipcode: "))
@@ -146,13 +147,13 @@ def getzip(df):
     checkdf = df.dropna()
     return checkdf
 
+# Finds open dining options via location name
 def getname(df):
   name = input("Enter location name: ")
   df = df.dropna()
   checkdf = df[df['NTA'].str.contains(name)]
-  print (checkdf)
+  #print (checkdf)
   return checkdf
-
 
 
 # Read in data 
@@ -183,10 +184,11 @@ plotdf = pd.DataFrame([['Manhattan', numbers_m[0] + numbers_m[3] , numbers_m[1],
   
 # plot data in stack manner of bar type
 plotdf.plot(x='Borough', kind='bar', stacked=True,
-        title='Outdoor Seating Options by Borough')
+        title='Outdoor Dining Options by Borough')
 
 #plt.show()
 plt.savefig("borodata.png", bbox_inches='tight')
+
 # Center Map around Manhattan 
 m = folium.Map(location=[40.724971, -74.004477], zoom_start=12)
 
@@ -207,7 +209,7 @@ elif (choice == 'all'):
 m = addallmarkers(checkdf, m, zipc)
 
 # Add legend
-m = add_categorical_legend(m, 'Outdoor Seating',
+m = add_categorical_legend(m, 'Outdoor Dining',
                              colors = ['green','blue', 'red'],
                            labels = ['Roadway Only', 'Sidewalk Only', 'Both'])
 if (zipc == 1):
