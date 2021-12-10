@@ -1,8 +1,6 @@
-## Open Restaurants NYC
-#### Do bar chart analysis for each all
-#### Do some analysis on each zip code
-
-
+#Title: Tahsin Provath
+#Resources: Pandas, numpy, folium, matplotlib, and branca
+#URL: https://kingfisherr.github.io/OpenRestaurantsNYC/
 
 import pandas as pd 
 import numpy as np 
@@ -10,7 +8,7 @@ import folium
 import matplotlib.pyplot as plt
 import branca
 
-#use this function to create a custom legend each time we generate a map (maybe for outdoor dining type)
+# Adds legend for each outdoor dining options to assist in visuals on folium
 def add_categorical_legend(folium_map, title, colors, labels):
     if len(colors) != len(labels):
         raise ValueError("colors and labels must have the same length.")
@@ -111,7 +109,7 @@ def add_categorical_legend(folium_map, title, colors, labels):
 
     return folium_map
 
-# Add photos and add reviews (and addy)
+# Adds relevant information to restaurant markers (i.e. name, address)
 def addallmarkers(df, map):
     tooltip = "Click Here For More Info"
     for a,b,c,d, e in zip(df.Latitude, df.Longitude, df['Restaurant Name'], df['Seating Interest (Sidewalk/Roadway/Both)'], df['Business Address']): 
@@ -122,64 +120,71 @@ def addallmarkers(df, map):
                 marker = folium.Marker(location=[a, b], popup= folium.Popup(iframe, min_width= 125), tooltip = tooltip, icon = folium.Icon(color = 'red', icon= 'cutlery', prefix= 'fa'))
                 marker.add_to(map)
             if d == 'sidewalk':
-                html = "<h5><b>" + c + "</h5></b>" + '<p style="font-family:Courier; color:Black; font-size: 14px;">' + e + "</p>"
+                html = "<h5><b>" + c + "</h5></b>" + '<p style="font-family:Courier; color:Black; font-size: 12px;">' + e + "</p>"
                 iframe = folium.IFrame(html,width=125,height=100)              
                 marker = folium.Marker(location=[a, b], popup= folium.Popup(iframe, min_width= 125), tooltip = tooltip, icon = folium.Icon(color = 'blue', icon= 'cutlery', prefix= 'fa'))
                 marker.add_to(map)
             if (d == 'roadway' or d == 'openstreets'):
-                html = "<h5><b>" + c + "</h5></b>" + '<p style="font-family:Courier; color:Black; font-size: 14px;">' + e + "</p>"
+                html = "<h5><b>" + c + "</h5></b>" + '<p style="font-family:Courier; color:Black; font-size: 12px;">' + e + "</p>"
                 iframe = folium.IFrame(html,width=125,height=100)              
                 marker = folium.Marker(location=[a, b], popup= folium.Popup(iframe, min_width= 125), tooltip = tooltip, icon = folium.Icon(color = 'green', icon= 'cutlery', prefix= 'fa'))
                 marker.add_to(map)                
 
-
-
 # Read in data 
 df = pd.read_csv(r"C:\Users\Tahsin Provath\Desktop\Hunter - Fall 2021\CS 39542\Project files\Open_Restaurant_Applications.csv")
 
-# Clean
+# Clean NaN values from certain columns
 df['Sidewalk Dimensions (Area)'] = df['Sidewalk Dimensions (Area)'].fillna(0)
 df['Roadway Dimensions (Area)'] = df['Roadway Dimensions (Area)'].fillna(0)
 df['Latitude'] = df['Latitude'].fillna(0)
 df['Longitude'] = df['Longitude'].fillna(0)
 
-# Bar chart for each borough
-queens_df = df[df['Borough'] == 'Queens']
-numbers_q = queens_df['Seating Interest (Sidewalk/Roadway/Both)'].value_counts()
-queens_df = df[df['Borough'] == 'Manhattan']
-numbers_m = queens_df['Seating Interest (Sidewalk/Roadway/Both)'].value_counts()
+# New DF for each borough to plot stacked bar chart
+boro_df = df[df['Borough'] == 'Manhattan']
+numbers_m = boro_df['Seating Interest (Sidewalk/Roadway/Both)'].value_counts()
+boro_df = df[df['Borough'] == 'Queens']
+numbers_q = boro_df['Seating Interest (Sidewalk/Roadway/Both)'].value_counts()
+boro_df = df[df['Borough'] == 'Brooklyn']
+numbers_bk = boro_df['Seating Interest (Sidewalk/Roadway/Both)'].value_counts()
+boro_df = df[df['Borough'] == 'Bronx']
+numbers_bx = boro_df['Seating Interest (Sidewalk/Roadway/Both)'].value_counts()
+boro_df = df[df['Borough'] == 'Staten Island']
+numbers_si = boro_df['Seating Interest (Sidewalk/Roadway/Both)'].value_counts()
 
-######################### PLOT EACH
-plotdf = pd.DataFrame([['Manhattan', numbers_m[0], numbers_m[1], numbers_m[2],numbers_m[3]], ['Queens', numbers_q[0], numbers_q[1], numbers_q[2],numbers_q[3]], ['C', 12, 15, 19, 6],
-                   ['D', 10, 18, 11, 19]],
-                  columns=['Borough', 'Both', 'Sidewalk', 'Roadway', 'Openstreets'])
+# Generate stacked bar plot
+plotdf = pd.DataFrame([['Manhattan', numbers_m[0] + numbers_m[3] , numbers_m[1], numbers_m[2]], ['Queens', numbers_q[0] + numbers_q[3], numbers_q[1], numbers_q[2]], ['Brooklyn', numbers_bk[0] + numbers_bk[3], numbers_bk[1], numbers_bk[2]],  ['Bronx', numbers_bx[0] + numbers_bx[3],numbers_bx[1], numbers_bx[2]],
+                   ['Staten Island', numbers_si[0] + numbers_si[3], numbers_si[1], numbers_si[2]]],
+                  columns=['Borough', 'Both', 'Sidewalk', 'Roadway'])
   
 # plot data in stack manner of bar type
 plotdf.plot(x='Borough', kind='bar', stacked=True,
-        title='Stacked Bar Graph by dataframe')
+        title='Outdoor Seating Options by Borough')
 
 #plt.show()
-
-# Drop all NaN rows (for all markers)
-#checkdf = df.dropna()
-
-
-# Center Map around Manhattan (might change this)
+plt.savefig("borodata.png", bbox_inches='tight')
+# Center Map around Manhattan 
 m = folium.Map(location=[40.724971, -74.004477], zoom_start=12)
 
-
-# New df with restaurants in a certain zipcode
+# Takes user input to determine which type of map to generate (see below)
 zipc = int(input("Enter a Zipcode: "))
-checkdf = df[df['Postcode'] == zipc]
 
+# If zipcode is specified
+if (zipc > 0):
+  checkdf = df[df['Postcode'] == zipc]
+# If user wants to see all, drop all NaN rows and plot all markers
+elif (zipc == 0):
+  checkdf = df.dropna()
+
+# Add markers based on user request
 addallmarkers(checkdf, m)
-
-
 
 # Add legend
 m = add_categorical_legend(m, 'Outdoor Seating',
                              colors = ['green','blue', 'red'],
                            labels = ['Roadway Only', 'Sidewalk Only', 'Both'])
-
-m.save(r"C:\Users\Tahsin Provath\Desktop\Hunter - Fall 2021\CS 39542\OpenRestaurantsNYC\map.html")
-print ("Done")
+if (zipc > 0):
+  m.save(r"C:\Users\Tahsin Provath\Desktop\Hunter - Fall 2021\CS 39542\OpenRestaurantsNYC\map.html")
+  print ("Done")
+elif (zipc ==0):
+  m.save(r"C:\Users\Tahsin Provath\Desktop\Hunter - Fall 2021\CS 39542\OpenRestaurantsNYC\fmap.html")
+  print ("Done")
