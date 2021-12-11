@@ -1,4 +1,5 @@
 #Title: Tahsin Provath
+#Email: tahsin.provath58@myhunter.cuny.edu
 #Resources: Pandas, numpy, folium, matplotlib, and branca
 #URL: https://kingfisherr.github.io/OpenRestaurantsNYC/
 
