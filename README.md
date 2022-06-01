@@ -1,5 +1,5 @@
 ## Open Restaurants NYC
-https://kingfisherr.github.io/OpenRestaurantsNYC/
+Visit deployed site here https://kingfisherr.github.io/OpenRestaurantsNYC/
 
 ![](https://i.imgur.com/44UuPew.jpg)
 
